@@ -24,7 +24,7 @@ const AddExercise: React.FC<AddExerciseProps> = ({ onAdd }) => {
         // onAdd({ name, description})
 
         const newExercise: Exercise = {
-            id: Date.now(), // You may use a more appropriate way to generate an id
+            id: Date.now(), // se sobreescribe
             name,
             description,
             favorite: false, // Assuming default value for favorite is false
