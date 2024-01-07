@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
+
+
 import Header from './components/Header.tsx'
 import Exercises from './components/Exercises.tsx'
 import AddExercise from './components/AddExercise.tsx'
@@ -17,6 +19,9 @@ interface Exercise {
 function App() {
   const [showAddExercise, setShowAddExercise] = useState(false)
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const baseUrl = import.meta.env.VITE_PUBLIC_PATH;
+
   useEffect(() => {
     const getExercises = async () => {
       const exercisesFromServer = await fetchExercises()
@@ -28,14 +33,14 @@ function App() {
 
   // Fetch Exercises
   const fetchExercises = async () => {
-    const res = await fetch('http://localhost:5000/exercise')
+    const res = await fetch(`${apiUrl}/exercise`)
     const data = await res.json()
     return data
   }
 
   // Fetch Exercise
   const fetchExercise = async (id: number) => {
-    const res = await fetch(`http://localhost:5000/exercise/${id}`)
+    const res = await fetch(`${apiUrl}/exercise/${id}`)
     const data = await res.json()
     return data
   }
@@ -46,7 +51,7 @@ function App() {
   // Add Exercise
   const addExercise = async (exercise: Exercise) => {
     try {
-      const res = await fetch('http://localhost:5000/exercise', {
+      const res = await fetch(`${apiUrl}/exercise`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
@@ -64,7 +69,7 @@ function App() {
 
   // Delete Exercise
   const deleteExercise = async (id: number) => {
-    await fetch(`http://localhost:5000/exercise/${id}`, {
+    await fetch(`${apiUrl}/exercise/${id}`, {
       method: 'DELETE'
     })
     setExercises(exercises.filter((exercise) => exercise.id !== id))
@@ -75,7 +80,7 @@ function App() {
     const exerciseToToggle = await fetchExercise(id)
     const updExercise = { ...exerciseToToggle, favorite: !exerciseToToggle.favorite }
 
-    const res = await fetch(`http://localhost:5000/exercise/${id}`, {
+    const res = await fetch(`${apiUrl}/exercise/${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json'
@@ -89,17 +94,18 @@ function App() {
   }
 
   return (
+    //<Router basename="/exercise-tracker-app">
     <Router>
       <div className="container mx-auto max-w-xl">
         <Header title='Exercise Tracker' onAdd={() => setShowAddExercise(!showAddExercise)} showAdd={showAddExercise} />
         <Routes>
-          <Route path="/" element={
+          <Route path={baseUrl} element={
             <>
               {showAddExercise && <AddExercise onAdd={addExercise} />}
               {exercises.length > 0 ? <Exercises exercises={exercises} onDelete={deleteExercise} onToggle={toggleFavorite} /> : 'No Exercises to show'}
             </>
           } />
-          <Route path="/about" element={<About />} />
+          <Route path={`${baseUrl}about`} element={<About />} />
         </Routes>
         <Footer />
       </div>

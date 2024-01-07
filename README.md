@@ -16,7 +16,7 @@ The "Exercise Tracker App" aims to provide a platform for users to record and hi
 
 ## Project Status
 
-The project is currently in development and can be previewed at the following URL: [Exercise Tracker App](https://giovanniferrari.cl/react_app/dist).
+The project is currently in development and can be previewed at the following URL: [Exercise Tracker App](https://giovanniferrari.cl/exercise-tracker-app).
 
 ## Features
 

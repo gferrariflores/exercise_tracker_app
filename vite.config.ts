@@ -7,9 +7,8 @@ export default ({ command }) => {
 
   // Ruta base para desarrollo
   const baseDev = '/';
-
   // Ruta base para producción
-  const baseProd = '/react_app/dist/';
+  const baseProd = '/exercise-tracker-app/';
 
   return defineConfig({
     base: isProduction ? baseProd : baseDev,

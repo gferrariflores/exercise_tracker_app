@@ -8,6 +8,8 @@ interface HeaderProps {
     showAdd: boolean; // El título es opcional
 }
 
+const baseUrl = import.meta.env.VITE_PUBLIC_PATH;
+
 const Header: React.FC<HeaderProps> = ({ title, onAdd, showAdd }) => {
     const location = useLocation()
 
@@ -17,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ title, onAdd, showAdd }) => {
                 <i className="fas fa-star text-yellow-500 mr-2"></i>
                 {title}
             </h1>
-            { location.pathname === '/' && (
+            { location.pathname === baseUrl && (
                 <Button color={showAdd ? 'red' : 'green'} text={showAdd ? 'Close' : 'Add'} onClick={onAdd} />
             )}
         </header>
