@@ -12,7 +12,6 @@ The "Exercise Tracker App" aims to provide a platform for users to record and hi
 - [React](https://reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [Flask](https://flask.palletsprojects.com/)
 
 ## Project Status
 
