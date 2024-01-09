@@ -8,10 +8,10 @@ The "Exercise Tracker App" aims to provide a platform for users to record and hi
 
 ## Technologies Used
 
-- [Vite](https://vitejs.dev/)
-- [React](https://reactjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
+- **[Vite](https://vitejs.dev/):** A fast, opinionated frontend build tool that provides an extremely quick development experience.
+- **[React](https://reactjs.org/):** A JavaScript library for building user interfaces, particularly single-page applications where UI changes over time.
+- **[TypeScript](https://www.typescriptlang.org/):** A superset of JavaScript that adds static typing and other features to enhance code quality and development experience.
+- **[Tailwind CSS](https://tailwindcss.com/):** A utility-first CSS framework that makes it easy to design responsive and visually appealing user interfaces.
 
 ## Project Status
 
