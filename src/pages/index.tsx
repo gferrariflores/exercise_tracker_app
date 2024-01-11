@@ -25,6 +25,7 @@ interface IndexProps {
 const Index: React.FC<IndexProps> = () => {
     const [exercises, setExercises] = useState<Exercise[]>([])
     const [showAddExercise, setShowAddExercise] = useState(false)
+    const [selectedExercises, setSelectedExercises] = useState<Exercise[]>([])
 
     useEffect(() => {
         const getExercises = async () => {
@@ -46,6 +47,18 @@ const Index: React.FC<IndexProps> = () => {
             setExercises((prevExercises) => [...prevExercises, response.data])
         } catch (error) {
             console.error('Error adding exercise:', error)
+        }
+    }
+
+    const addExerciseToWorkout = (id: number) => {
+        const selectedExercise = exercises.find((exercise) => exercise.id === id)
+    
+        if (selectedExercise) {
+            // Agrega el ejercicio seleccionado al array de ejercicios del workout
+            setSelectedExercises((prevSelectedExercises) => [...prevSelectedExercises, selectedExercise])
+    
+            // Elimina el ejercicio seleccionado del array de ejercicios en el centro
+            setExercises((prevExercises) => prevExercises.filter((exercise) => exercise.id !== id))
         }
     }
 
@@ -77,10 +90,10 @@ const Index: React.FC<IndexProps> = () => {
                 <CheckboxSidebar />
 
                 {/* Listado de Ejercicios */}
-                <ExercisesColumn exercises={exercises} onDelete={deleteExercise} onToggle={toggleFavorite} />
+                <ExercisesColumn exercises={exercises} onDelete={deleteExercise} onToggle={toggleFavorite} onAddToWorkout={addExerciseToWorkout}/>
 
                 {/* Columna de Ejercicios Seleccionados */}
-                <WorkoutColumn />
+                <WorkoutColumn exercises={selectedExercises} onDelete={deleteExercise} onToggle={toggleFavorite} />
             </div>
             <Footer />
 

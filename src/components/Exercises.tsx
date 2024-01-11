@@ -1,28 +1,28 @@
 import React from 'react';
-import SingleExercise from './Exercise.tsx'
+import SingleExercise from './Exercise.tsx';
 
 interface Exercise {
-  id: number;
-  name: string;
-  description: string;
-  favorite: boolean;
+    id: number;
+    name: string;
+    description: string;
+    favorite: boolean;
 }
 
-interface ExerciseProps {
-    exercises?: Exercise[]; // El título es opcional
+interface ExercisesProps {
+    exercises?: Exercise[]; // El array de ejercicios es opcional
     onDelete: (id: number) => void;
     onToggle: (id: number) => void;
+    onAddToWorkout?: (id: number) => void; // Función opcional
 }
 
-const Exercises: React.FC<ExerciseProps> = ({ exercises = [], onDelete, onToggle }) => {
-
+const Exercises: React.FC<ExercisesProps> = ({ exercises = [], onDelete, onToggle, onAddToWorkout }) => {
     return (
         <>
             {exercises.map((exercise) => (
-                <SingleExercise key={exercise.id} exercise={exercise} onDelete={onDelete} onToggle={onToggle} />
+                <SingleExercise key={exercise.id} exercise={exercise} onDelete={onDelete} onToggle={onToggle} onAddToWorkout={onAddToWorkout} />
             ))}
         </>
-    )
-}
+    );
+};
 
-export default Exercises
+export default Exercises;

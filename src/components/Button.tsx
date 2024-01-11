@@ -9,6 +9,7 @@ interface ButtonProps {
 const colorClasses = [
     { color: "green", value: 'bg-green-500 hover:bg-green-700' },
     { color: "red", value: 'bg-red-500 hover:bg-red-700' },
+    { color: "blue", value: 'bg-blue-500 hover:bg-blue-700' },
 ];
 
 const Button: React.FC<ButtonProps> = ({ text = 'Button', onClick, color }) => {

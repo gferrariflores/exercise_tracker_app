@@ -1,10 +1,10 @@
 // CheckboxSidebar.tsx
 const CheckboxSidebar = () => {
   // Ejemplo de lista de tags
-  const tags = ['Cardio', 'Strength Training', 'Flexibility', 'HIIT', 'Yoga'];
+  const tags = ['Cardio', 'Strength Training', 'Flexibility', 'HIIT', 'Yoga']
 
   return (
-    <div className="w-1/4 p-4 bg-gray-200">
+    <div className="w-1/5 p-4 bg-gray-200">
       <h4 className="text-lg font-semibold mb-4">Filter by Tags</h4>
       <div>
         {tags.map((tag, index) => (
@@ -15,7 +15,7 @@ const CheckboxSidebar = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CheckboxSidebar;
+export default CheckboxSidebar
