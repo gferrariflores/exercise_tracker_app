@@ -1,14 +1,14 @@
 import React from 'react';
-import Button from './Button.tsx'
 import { useLocation } from 'react-router-dom'
+import { routes } from '../utils/routes'
+
+import Button from './Button.tsx'
 
 interface HeaderProps {
     title: string; // El título es opcional
     onAdd: () => void;
     showAdd: boolean; // El título es opcional
 }
-
-const baseUrl = import.meta.env.VITE_PUBLIC_PATH;
 
 const Header: React.FC<HeaderProps> = ({ title, onAdd, showAdd }) => {
     const location = useLocation()
@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ title, onAdd, showAdd }) => {
                 <i className="fas fa-star text-yellow-500 mr-2"></i>
                 {title}
             </h1>
-            { location.pathname === baseUrl && (
+            { location.pathname === routes.home && (
                 <Button color={showAdd ? 'red' : 'green'} text={showAdd ? 'Close' : 'Add'} onClick={onAdd} />
             )}
         </header>
