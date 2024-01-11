@@ -1,9 +1,15 @@
-// pages/Home.tsx
+// pages/Index.tsx
 import React, { useState, useEffect } from 'react'
 import * as api from '../api/api'
+
 import Header from '../components/Header'
-import Exercises from '../components/Exercises'
 import AddExercise from '../components/AddExercise'
+
+import CheckboxSidebar from '../components/CheckboxSidebar'
+import ExercisesColumn from '../components/ExercisesColumn'
+import WorkoutColumn from '../components/WorkoutColumn'
+
+import Footer from '../components/Footer'
 
 interface Exercise {
     id: number
@@ -12,11 +18,11 @@ interface Exercise {
     favorite: boolean
 }
 
-interface HomeProps {
-    // Puedes agregar propiedades específicas de Home si es necesario
+interface IndexProps {
+    // Puedes agregar propiedades específicas de Index si es necesario
 }
 
-const Home: React.FC<HomeProps> = () => {
+const Index: React.FC<IndexProps> = () => {
     const [exercises, setExercises] = useState<Exercise[]>([])
     const [showAddExercise, setShowAddExercise] = useState(false)
 
@@ -44,34 +50,42 @@ const Home: React.FC<HomeProps> = () => {
     }
 
     const deleteExercise = async (id: number) => {
-        await api.deleteExercise(id);
-        setExercises(exercises.filter((exercise) => exercise.id !== id));
-    };
+        await api.deleteExercise(id)
+        setExercises(exercises.filter((exercise) => exercise.id !== id))
+    }
 
     const toggleFavorite = async (id: number) => {
         try {
-            const data = await api.fetchExercise(id);
-            const updExercise = { ...data, favorite: !data.favorite };
-            await api.updateExercise(id, updExercise);
+            const data = await api.fetchExercise(id)
+            const updExercise = { ...data, favorite: !data.favorite }
+            await api.updateExercise(id, updExercise)
             setExercises((prevExercises) =>
                 prevExercises.map((exercise) => (exercise.id === id ? updExercise : exercise))
-            );
+            )
         } catch (error) {
-            console.error('Error toggling favorite:', error);
+            console.error('Error toggling favorite:', error)
         }
-    };
+    }
 
     return (
         <div>
             <Header title="Workout Wizard" onAdd={() => setShowAddExercise(!showAddExercise)} showAdd={showAddExercise} />
             {showAddExercise && <AddExercise onAdd={addExercise} />}
-            {exercises.length > 0 ? (
-                <Exercises exercises={exercises} onDelete={deleteExercise} onToggle={toggleFavorite} />
-            ) : (
-                'No Exercises to show'
-            )}
-        </div>
-    );
-};
 
-export default Home;
+            <div className="flex">
+                {/* Sidebar de Checkboxes */}
+                <CheckboxSidebar />
+
+                {/* Listado de Ejercicios */}
+                <ExercisesColumn exercises={exercises} onDelete={deleteExercise} onToggle={toggleFavorite} />
+
+                {/* Columna de Ejercicios Seleccionados */}
+                <WorkoutColumn />
+            </div>
+            <Footer />
+
+        </div>
+    )
+}
+
+export default Index

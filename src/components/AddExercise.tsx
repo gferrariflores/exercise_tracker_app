@@ -37,7 +37,7 @@ const AddExercise: React.FC<AddExerciseProps> = ({ onAdd }) => {
     }
  
     return (
-        <form className="max-w-sm mx-auto" onSubmit={onSubmit}>
+        <form className="max-w-sm mx-auto my-2" onSubmit={onSubmit}>
             <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                     Exercise Name

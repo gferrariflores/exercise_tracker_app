@@ -2,6 +2,6 @@
 export const baseUrl = import.meta.env.VITE_PUBLIC_PATH;
 
 export const routes = {
-  home: baseUrl,
+  index: baseUrl,
   about: `${baseUrl}about`,
 };

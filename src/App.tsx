@@ -1,19 +1,17 @@
 // App.tsx
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { routes } from './utils/routes'
-import Home from './pages/Home'
-import About from './pages/About'
-import Footer from './components/Footer'
+import Index from './pages'
+import About from './pages/about'
 
 function App() {
   return (
     <Router>
-      <div className="container mx-auto max-w-xl">
+      <div className="min-h-screen flex flex-col">
         <Routes>
-          <Route path={routes.home} element={<Home />} />
+          <Route path={routes.index} element={<Index />} />
           <Route path={routes.about} element={<About />} />
         </Routes>
-        <Footer />
       </div>
     </Router>
   )
