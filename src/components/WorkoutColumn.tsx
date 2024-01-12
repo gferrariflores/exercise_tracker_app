@@ -1,6 +1,6 @@
 // components/WorkoutColumn.tsx
 import React from 'react'
-import Exercises from './Exercises'
+import SingleExercise from './Exercise.tsx'
 
 interface Exercise {
   id: number
@@ -20,7 +20,9 @@ const WorkoutColumn: React.FC<WorkoutColumnProps> = ({ exercises, onDelete, onTo
     <div className="w-2/5 p-4 bg-gray-400">
       <h4 className="text-lg font-semibold mb-4">Selected Exercises Column</h4>
       {exercises.length > 0 ? (
-        <Exercises exercises={exercises} onDelete={onDelete} onToggle={onToggle} />
+        exercises.map((exercise) => (
+          <SingleExercise key={exercise.id} exercise={exercise} onDelete={onDelete} onToggle={onToggle} />
+        ))
       ) : (
         <p>No exercises to display.</p>
       )}
